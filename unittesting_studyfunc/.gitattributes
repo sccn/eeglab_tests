@@ -1,0 +1,2 @@
+teststudy/** filter=lfs diff=lfs merge=lfs -text
+teststudy2/** filter=lfs diff=lfs merge=lfs -text
