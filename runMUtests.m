@@ -1,5 +1,7 @@
 function results = runMUtests
+import matlab.unittest.constraints.StartsWithSubstring;
 import matlab.unittest.selectors.HasName
+import matlab.unittest.selectors.HasBaseFolder;
 
 % find rootDir of tests based on path of this MATLAB function
 testRootDir = fileparts(mfilename('fullpath'));
@@ -11,6 +13,8 @@ suite = testsuite(testRootDir, 'IncludeSubfolders', true);
 % Unit Testing Framework. Since it follows naming conventions of MU, we
 % need to exclude it here explicitly
 suite = suite.selectIf(~HasName('runtest/runtest'));
+% disregards tests that are under eeglab subfolder
+suite = suite.selectIf(~HasBaseFolder(StartsWithSubstring(fullfile(testRootDir, 'eeglab'))));
 
 % run test suite from test runner
 runner = testrunner;
