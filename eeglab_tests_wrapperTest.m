@@ -1,4 +1,4 @@
-function tests = tests_wrapperTest
+function tests = eeglab_tests_wrapperTest
 tests = functiontests(localfunctions);
 
 

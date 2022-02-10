@@ -1,5 +1,28 @@
 classdef t_statcond < RegressionTest
 
+    methods(TestClassSetup)
+        % (in)homogeneous > (in)homogenous
+        % check if any of the input arguments is 'variance' if so if the
+        % next input argument has the wrong spelling for homogenous, fix it
+        function updateVarianceValue(testCase)
+            nrTests = length(testCase.inputs);
+            for test_i=1:nrTests
+                for arg_i=1:length(testCase.inputs{test_i})-1
+                    if strcmp(testCase.inputs{test_i}{arg_i}, 'variance')
+                        if strcmp(testCase.inputs{test_i}{arg_i+1}, 'homogeneous')
+                            testCase.inputs{test_i}{arg_i+1} = 'homogenous';
+                        elseif strcmp(testCase.inputs{test_i}{arg_i+1}, 'inhomogeneous')
+                            testCase.inputs{test_i}{arg_i+1} = 'inhomogenous';
+                        end
+                        break
+                    end
+                end
+            end
+            
+        end
+    end
+
+
 	methods (Test)
 
 		function test_1(testCase)
