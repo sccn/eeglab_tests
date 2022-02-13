@@ -46,8 +46,8 @@ jobs:
         with:
           test-results-junit: test-results/results_${{ matrix.release }}.xml
           test-results-pdf: test-results/results_${{ matrix.release }}.pdf
-          source-folder: functions
-          select-by-folder: tests
+          source-folder: eeglab/functions
+          select-by-folder: .
           code-coverage-cobertura: coverage_${{ matrix.release }}.xml
 
       # Upload JUnit results to codecov.io
