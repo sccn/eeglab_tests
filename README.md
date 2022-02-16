@@ -2,6 +2,19 @@
 
 EEGLAB_tests is the repository on GitHub with tests to validate correct behavior of [EEGLAB](https://github.com/sccn/eeglab). This repository uses (or intents to use) concepts like MATLAB Projects, MATLAB Unit Testing, Git LFS, Git submodules and GitHub Actions to automate running tests on EEGLAB in the cloud. The concepts are further explained in this Readme.
 
+# Installing/cloning
+
+```
+git clone --recurse-submodules https://github.com/sccn/eeglab_tests.git
+```
+
+If you forgot to clone the submodule, go to the eeglab folder and type
+
+```
+git submodule update --init --recursive --remote
+git pull --recurse-submodules
+```
+
 ## MATLAB Projects
 
 MATLAB Projects is a project management tool inside MATLAB for managing MATLAB or Simulink Projects. For more information: <https://www.mathworks.com/solutions/projects.html> and <https://www.mathworks.com/help/matlab/projects.html>
