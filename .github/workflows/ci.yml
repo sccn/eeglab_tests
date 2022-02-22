@@ -31,7 +31,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
         with:
-          submodules: true
+          submodules: recursive
           lfs: true
 
       # Sets up MATLAB on the GitHub Actions runner
