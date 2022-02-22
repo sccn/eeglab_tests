@@ -12,7 +12,7 @@ testRootDir = fileparts(mfilename('fullpath'));
 % the same files for our wrapper as in runtests.m
 excludeFiles = { 'runtest.m' 'scanfoldersendemail.m' ...
     'ds002718' 'unittesting_tutorial' 'unittesting_common' 'unittesting_limo' ...
-    'regression_tests' 'eeglab'};
+    'regression_tests' fullfile(testRootDir, 'eeglab') };
 
 % in addition we want to exclude these files:
 
