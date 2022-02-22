@@ -37,6 +37,7 @@ For more information on MATLAB Unit Testing: <https://www.mathworks.com/help/mat
 MATLAB Unit Testing can be extended with plugins, e.g. to perform code coverage analysis. The code coverage can be inspected from running tests from within MATLAB locally, but can also be calculated as part of the cloud-based tests. More information about Unit Test plugin, including Code Coverage:
 <https://www.mathworks.com/help/matlab/matlab_prog/generate-artifacts-using-matlab-unit-test-plugins.html>
 
+Example unit test in statcond -> statcondTest.m
 ## Git LFS
 
 Since some tests require substantial data files to verify correct functionality, and Git is a source code management tool, not a data management tool, EEGLAB_tests uses Git LFS to store large files in GitHub LFS. For more information on using Git LFS with GitHub:
@@ -50,6 +51,8 @@ Once Git LFS is installed and configured, you can use the typical `git commit`, 
 ## Git submodules
 
 The reference from EEGLAB_tests to the EEGLAB repo with the actual EEGLAB code to be tested is using Git submodules. For more information: <https://git-scm.com/docs/gitsubmodules>
+
+In .yml file, need to specify 'recursive' for 'submodules' for CI to pull the nested submodules (EEGLAB plugins) as well.
 
 ## GitHub Actions
 
@@ -69,4 +72,4 @@ The following are useful actions for EEGLAB_tests:
   display test pass/fail overview directly in GitHub Actions menu
 - [actions/upload-artifact@v2](https://github.com/actions/upload-artifact)
   upload artifacts from running tests in cloud back to GitHub Project for inspection
-  
+ 
