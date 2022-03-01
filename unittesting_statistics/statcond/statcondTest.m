@@ -70,7 +70,7 @@ classdef statcondTest < matlab.unittest.TestCase
             % testing unpaired t-test
             a = ttest_a;
             
-            [t, df, pvals, ~] = statcond(a, 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogeneous');
+            [t, df, pvals, ~] = statcond(a, 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogenous');
             [~, p, ~, stats] = ttest2(a{1}, a{2});
             testCase.log( ...
                 sprintf("Statistics unpaired statcond     t-value %2.2f df=%d p=%0.4f\n", t, df, pvals) + ...
@@ -188,7 +188,7 @@ classdef statcondTest < matlab.unittest.TestCase
         
         function unpairedDimTTest(testCase, dimT_par)
             
-            FUT = @(data) statcond(data, 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogeneous');
+            FUT = @(data) statcond(data, 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogenous');
             
             [t, df, pvals] = cellfun(FUT, dimT_par, 'UniformOutput', false);
             
