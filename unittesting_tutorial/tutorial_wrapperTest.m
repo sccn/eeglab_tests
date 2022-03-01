@@ -17,8 +17,9 @@ event_processing_study
 function test_make_eeg_movie(~)
 make_eeg_movie
 
-function test_plot_study_erp(~)
-plot_study_erp
+%function test_plot_study_erp(~)
+% asking for download
+%plot_study_erp
 
 function test_source_reconstruction_advanced(~)
 source_reconstruction_advanced
