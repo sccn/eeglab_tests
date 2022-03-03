@@ -45,6 +45,12 @@ jobs:
         with:
           release: ${{ matrix.release }}
 
+      # Run script that add additional plugins to environment
+      - name: Add additional plugins
+        uses: matlab-actions/run-command@v1
+        with:
+          command: add_plugins
+
       # Runs a set of commands using the runners shell
       - name: Run all tests
         uses: matlab-actions/run-tests@v1

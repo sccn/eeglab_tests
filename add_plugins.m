@@ -1,0 +1,13 @@
+eeglab;
+try plugin_askinstall('neuroscanio', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('bva-io', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('Biosig', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('Fileio', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('erpssimport', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('Fieldtrip-lite', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('corrmap', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('bdfimport', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('picard', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('bids-matlab-tools', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('LIMO', [], true); catch, disp(lasterror); end;
+try plugin_askinstall('erpssimport', [], true); catch, disp(lasterror); end;
