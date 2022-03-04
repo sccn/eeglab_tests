@@ -1,13 +1,48 @@
-eeglab;
-try plugin_askinstall('neuroscanio', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('bva-io', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('Biosig', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('Fileio', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('erpssimport', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('Fieldtrip-lite', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('corrmap', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('bdfimport', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('picard', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('bids-matlab-tools', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('LIMO', [], true); catch, disp(lasterror); end;
-try plugin_askinstall('erpssimport', [], true); catch, disp(lasterror); end;
+function add_plugins
+% ADD_PLUGINS adds the necessary plugins (if not yet installed) for running
+% all tests
+
+% run EEGLAB to get access to already installed plugins
+eeglab nogui
+
+try
+    PLUGINLIST = evalin('base', 'PLUGINLIST');
+    installedPlugins = convertCharsToStrings({PLUGINLIST.plugin});
+catch
+    installedPlugins = "";
+end
+
+pluginsToInstall = [
+    "neuroscanio"
+    "bva-io"
+    "Biosig"
+    "Fileio"
+    "erpssimport"
+    "Fieldtrip-lite"
+    "corrmap"
+    "BDFimport"
+    "PICARD"
+    "bids-matlab-tools"
+    "LIMO"
+    "erpssimport"
+    ];
+
+% install each plugins with the install subfunction
+arrayfun(@install, pluginsToInstall);
+
+    function install(plugin)
+        force = true;
+
+        % Only install if it is not yet installed
+        if all(installedPlugins ~= plugin)
+
+            try
+                plugin_askinstall(plugin, [], force)
+            catch exc
+                disp(exc)
+            end
+
+        end
+    end
+
+end
