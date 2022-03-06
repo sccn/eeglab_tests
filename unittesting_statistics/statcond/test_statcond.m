@@ -42,7 +42,7 @@ disp('--------------------');
 
 % testing unpaired t-test
 % -----------------------
-[t df pvals surog] = statcond(a, 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogeneous');
+[t df pvals surog] = statcond(a, 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogenous');
 [h p tmp stats] = ttest2(a{1}, a{2});
 fprintf('Statistics paired statcond     t-value %2.2f df=%d p=%0.4f\n', t, df, pvals); 
 fprintf('Statistics paired ttest2 func. t-value %2.2f df=%d p=%0.4f\n', stats.tstat, stats.df, p); 
@@ -105,10 +105,10 @@ fprintf('Statistics paired statcond t-test dim3 t-value %2.2f df=%d p=%0.4f\n', 
 fprintf('Statistics paired statcond t-test dim4 t-value %2.2f df=%d p=%0.4f\n', t4(1,2,4), df4, pvals4(1,2,4));
 assertsame([t1 t2(4) t3(2,4) t4(1,2,4)], [df1 df2 df3 df4], [pvals1 pvals2(4) pvals3(2,4) pvals4(1,2,4)]); 
 disp('--------------------');
-[t1 df1 pvals1] = statcond(a(1:2), 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogeneous');
-[t2 df2 pvals2] = statcond(b(1:2), 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogeneous');
-[t3 df3 pvals3] = statcond(c(1:2), 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogeneous');
-[t4 df4 pvals4] = statcond(d(1:2), 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogeneous');
+[t1 df1 pvals1] = statcond(a(1:2), 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogenous');
+[t2 df2 pvals2] = statcond(b(1:2), 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogenous');
+[t3 df3 pvals3] = statcond(c(1:2), 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogenous');
+[t4 df4 pvals4] = statcond(d(1:2), 'mode', 'param', 'verbose', 'off', 'paired', 'off', 'variance', 'homogenous');
 fprintf('Statistics unpaired statcond t-test dim1 t-value %2.2f df=%d p=%0.4f\n', t1, df1, pvals1);
 fprintf('Statistics unpaired statcond t-test dim2 t-value %2.2f df=%d p=%0.4f\n', t2(4), df2, pvals2(4));
 fprintf('Statistics unpaired statcond t-test dim3 t-value %2.2f df=%d p=%0.4f\n', t3(2,4), df3, pvals3(2,4));
