@@ -28,9 +28,9 @@ make_eeg_movie
 % source_reconstruction_eeg
 
 % function test_study_script(~)
-% p = fileparts(which('tutorial_wrapperTest.m'));
-% cd(fullfile(p, '..', 'unittesting_studyfunc', 'teststudy'));
-% study_script
+p = fileparts(which('tutorial_wrapperTest.m'));
+cd(fullfile(p, '..', 'unittesting_studyfunc', 'teststudy'));
+study_script
 
 function test_time_freq_all_elec(~)
 time_freq_all_elec
