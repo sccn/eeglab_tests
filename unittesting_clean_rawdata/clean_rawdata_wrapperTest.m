@@ -1,6 +1,9 @@
 function tests = clean_rawdata_wrapperTest
 tests = functiontests(localfunctions);
 
+function test_clean_rawdata_filtering_test(~)
+clean_rawdata_filtering_test
+
 function test_clean_rawdata_chan_test(~)
 clean_rawdata_chan_test
 
