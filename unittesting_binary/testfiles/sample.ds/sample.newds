@@ -1,0 +1,17 @@
+// 
+// These parameters will appear in the new dataset.
+// 
+NewDatasetFields
+{
+	site:	NIMH MEG Core Facility
+	system:	DSQ-2010
+	institute:	NIMH
+	protocol:	default.rp
+	purpose:	
+	keywords:	
+	coefsName:	/opt/ctf/hardware/M015/M015_1609.coef
+	sensName:	/opt/ctf/hardware/M015/M015_1609.sens
+	appName:	Acq 4.16-dnm-linux-20030228
+	systemType:	cmeg
+	bandwidth:	0.000000, 1000.000000
+}

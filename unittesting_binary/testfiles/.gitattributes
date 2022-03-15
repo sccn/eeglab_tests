@@ -1,0 +1,13 @@
+. filter=lfs diff=lfs merge=lfs -text
+testfiles/** filter=lfs diff=lfs merge=lfs -text
+Musemonitor filter=lfs diff=lfs merge=lfs -text
+ProcomInfinityData filter=lfs diff=lfs merge=lfs -text
+ANT filter=lfs diff=lfs merge=lfs -text
+BDF filter=lfs diff=lfs merge=lfs -text
+BVA filter=lfs diff=lfs merge=lfs -text
+ERPSS filter=lfs diff=lfs merge=lfs -text
+MFF filter=lfs diff=lfs merge=lfs -text
+EDF+ filter=lfs diff=lfs merge=lfs -text
+EGI filter=lfs diff=lfs merge=lfs -text
+README.txt filter=lfs diff=lfs merge=lfs -text
+SMA filter=lfs diff=lfs merge=lfs -text

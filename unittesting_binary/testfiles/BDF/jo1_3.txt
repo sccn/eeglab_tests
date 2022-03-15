@@ -1,0 +1,3 @@
+File origin: Swartz Center for computational Neuroscience
+Recording aparatus: BIOSEMI Active 2 256 channels
+Recording date: 2004

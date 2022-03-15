@@ -55,6 +55,6 @@ function pass_zero_y()
         % cart2topo is deprecated!
         [rth rr] = cart2topo(data);
 
-        if ~near(cth, rth) || ~near(cr, rr)
+        if ~near(cth, rth') || ~near(cr, rr')
             error('EEGLAB:unittesting','Error in cart2topo(): incorrect result.');
         end;

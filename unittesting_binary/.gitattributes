@@ -1,0 +1,13 @@
+testfiles/BDF filter=lfs diff=lfs merge=lfs -text
+testfiles/BVA filter=lfs diff=lfs merge=lfs -text
+testfiles/EDF+ filter=lfs diff=lfs merge=lfs -text
+testfiles/EGI filter=lfs diff=lfs merge=lfs -text
+testfiles/MFF filter=lfs diff=lfs merge=lfs -text
+testfiles/Musemonitor filter=lfs diff=lfs merge=lfs -text
+testfiles/neuroscan filter=lfs diff=lfs merge=lfs -text
+testfiles/sample.ds filter=lfs diff=lfs merge=lfs -text
+testfiles/ANT filter=lfs diff=lfs merge=lfs -text
+testfiles/ERPSS filter=lfs diff=lfs merge=lfs -text
+testfiles/ProcomInfinityData filter=lfs diff=lfs merge=lfs -text
+testfiles/README.txt filter=lfs diff=lfs merge=lfs -text
+testfiles/SMA filter=lfs diff=lfs merge=lfs -text

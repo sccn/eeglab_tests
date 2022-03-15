@@ -6,7 +6,7 @@ function generateWrapperTests()
 %   without requiring to rewrite all old tests.
 
 % the starting directory from which we detect all test files/functions
-testRootDir = fileparts(mfilename('fullpath'));
+testRootDir = pwd; %fileparts(mfilename('fullpath'));
 
 % since we want to replicate running the existing tests, we should exclude
 % the same files for our wrapper as in runtests.m
