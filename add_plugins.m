@@ -1,6 +1,5 @@
 function add_plugins
-% ADD_PLUGINS adds the necessary plugins (if not yet installed) for running
-% all tests
+% ADD_PLUGINS adds the necessary plugins (if not yet installed) for running all tests
 
 % run EEGLAB to get access to already installed plugins
 eeglab nogui
