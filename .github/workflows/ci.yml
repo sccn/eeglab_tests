@@ -7,11 +7,11 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   # and ignore if there are only changes to .md-files, such as README.md
   push:
-    branches: [ master ]
+    branches: [ cache ]
     paths-ignore:
       - '**.md'
   pull_request:
-    branches: [ master ]
+    branches: [ cache ]
     paths-ignore:
       - '**.md'
 
@@ -30,9 +30,23 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check out repository
-        uses: nschloe/action-checkout-with-lfs-cache@v1
+        uses: actions/checkout@v2
         with:
+          lfs: true
           submodules: recursive
+          
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+        
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
+      
+      - name: Git LFS Pull
+        run: git lfs pull
 
       # Sets up MATLAB on the GitHub Actions runner
       - name: Setup MATLAB
