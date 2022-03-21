@@ -25,23 +25,17 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
-    # Only clone refs of git lfs
-    env:
-      GIT_LFS_SKIP_SMUDGE: 1
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check out repository
         uses: actions/checkout@v2
         with:
-          lfs: true
           submodules: recursive
           
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-        
-      - name: Check content of lfs-assets-id
-        run: cat .lfs-assets-id
         
       - name: Restore LFS cache
         uses: actions/cache@v2
@@ -59,35 +53,3 @@ jobs:
         uses: matlab-actions/setup-matlab@v1
         with:
           release: R2021b
-
-      # Runs a set of commands using the runners shell
-      - name: Run all tests
-        uses: matlab-actions/run-tests@v1
-        with:
-          test-results-junit: test-results/results_${{ matrix.release }}.xml
-          test-results-pdf: test-results/results_${{ matrix.release }}.pdf
-          code-coverage-cobertura: coverage_${{ matrix.release }}.xml
-
-      # Upload JUnit results to codecov.io
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          file: coverage_${{ matrix.release }}.xml
-          flags: ${{ matrix.release }}
-
-      # Show Test Report
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure() # run this step even if previous step failed
-        with:
-          name: MATLAB Test ${{ matrix.release }}
-          path: test-results/results_${{ matrix.release }}.xml
-          reporter: java-junit
-
-      # Upload PDF artifacts
-      - name: Store test report
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: my-artifact-${{ matrix.release }}
-          path: test-results/results_${{ matrix.release }}.pdf
