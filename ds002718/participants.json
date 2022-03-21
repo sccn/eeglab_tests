@@ -1,17 +1,3 @@
-{
-  "participant_id": {
-    "LongName": "Participant identifier",
-    "Description": "Unique subject identifier"
-  },
-  "gender": {
-    "Description": "Sex of the subject",
-    "Levels": {
-      "M": "male",
-      "F": "female"
-    }
-  },
-  "age": {
-    "Description": "Age of the subject",
-    "Units": "years"
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9bc78e30f61e0b3dc5980f4743bdbacc3f670b4a6decb0e260f7e3c71a13f521
+size 317
