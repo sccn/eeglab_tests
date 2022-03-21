@@ -25,11 +25,11 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
-    
+
     strategy:
       matrix:
         release: [R2021b]
-        
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -37,30 +37,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-          
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-      
-      - name: Check lfs-files content
-        run: cat .lfs-assets-id
-        
-      - name: Restore LFS cache
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: .git/lfs
-          key: lfs-${{ hashFiles('.lfs-assets-id') }}-v2
-      
-      - name: Git LFS Pull
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: git lfs pull
-      
+          lfs: true
+
       # Sets up MATLAB on the GitHub Actions runner
       - name: Setup MATLAB
         uses: matlab-actions/setup-matlab@v1
         with:
           release: ${{ matrix.release }}
-          
+
       # Runs a set of commands using the runners shell
       - name: Run all tests
         uses: matlab-actions/run-tests@v1
