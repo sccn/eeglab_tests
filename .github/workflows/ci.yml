@@ -42,7 +42,7 @@ jobs:
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
       
       - name: Check lfs-files content
-        run: cat .lfs_assets-id
+        run: cat .lfs-assets-id
         
       - name: Restore LFS cache
         uses: actions/cache@v2
