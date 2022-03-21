@@ -49,6 +49,7 @@ jobs:
           key: lfs-${{ hashFiles('.lfs-assets-id') }}-v1
       
       - name: Git LFS Pull
+        if: steps.cache.outputs.cache-hit != 'true'
         run: git lfs pull
 
 
