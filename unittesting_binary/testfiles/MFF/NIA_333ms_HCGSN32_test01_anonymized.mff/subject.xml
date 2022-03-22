@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<patient xmlns="http://www.egi.com/subject_mff" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-   <fields>
-      <field>
-         <name>localIdentifier</name>
-         <data dataType="string">f77bc381813e9570e0c48ba6a5773815</data>
-      </field>
-   </fields>
-</patient>
