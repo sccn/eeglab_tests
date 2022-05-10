@@ -63,8 +63,8 @@ function passed = pass_allevents()
                      [ 5 ]; ...
                      [ 6 ] ];
 
-        crerefevent =     { [1 2], [2 3], [ 2 3 4], [4 5 6], [6], [ 7 8] };
-        crereflatencies = { [0 3], [0 1], [-1 0 3], [0 1 3], [0], [-1 0] };
+        crerefevent =     { [1], [2 3], [ 2 3], [4 5], [6], [ 7 8] };
+        crereflatencies = { [0], [0 1], [-1 0], [0 1], [0], [-1 0] };
 
         [repocheddata, rnewtime, rindices, rrerefevent, rrereflatencies ] = ...
                        epoch( EEG.data, events, timelim, 'srate', EEG.srate, 'allevents', allevents );
