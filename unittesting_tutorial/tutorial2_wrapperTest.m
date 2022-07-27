@@ -1,6 +1,6 @@
 function tests = tutorial2_wrapperTest
 % not registered as a test by default
-tests = functiontests(localfunctions);
+% tests = functiontests(localfunctions);
 
 function test_bids_process_face_experiment(~)
 p = fileparts(which('tutorial2_wrapperTest.m'));
