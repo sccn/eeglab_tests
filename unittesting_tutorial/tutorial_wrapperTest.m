@@ -1,11 +1,6 @@
 function tests = tutorial_wrapperTest
 tests = functiontests(localfunctions);
 
-function test_bids_process_face_experiment(~)
-p = fileparts(which('tutorial_wrapperTest.m'));
-cd(fullfile(p, '..', 'ds002718'));
-bids_process_face_experiment
-
 function test_eeglab_history(~)
 eeglab_history
 
