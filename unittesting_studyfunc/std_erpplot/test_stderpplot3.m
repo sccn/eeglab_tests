@@ -28,7 +28,7 @@ for design = 1:length(STUDY.design)
     % use EEGLAB STUDY functions
     % --------------------------
     STUDY = std_selectdesign(STUDY, ALLEEG, design);
-    [STUDY ALLEEG] = std_precomp(STUDY, ALLEEG, 'components', 'savetrials','on','recompute','on', 'interp', 'on', 'erp','on', 'erpparams', { 'rmbase', rmbase });
+    [STUDY ALLEEG] = std_precomp(STUDY, ALLEEG, 'components', 'savetrials','on','recompute','on', 'interp', 'on', 'scalp', 'on', 'erp','on', 'erpparams', { 'rmbase', rmbase });
     [STUDY erpdataAll erptimes] = std_erpplot(STUDY, ALLEEG, 'clusters', clustInd); close;
     
     set       = STUDY.cluster(clustInd).sets(condInd,compInd);
