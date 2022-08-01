@@ -45,7 +45,7 @@ jobs:
         run: cat .lfs-assets-id
 
       - name: Restore LFS cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache
         with:
           path: .git/lfs
