@@ -10,4 +10,4 @@ function test_bids_process_face_experiment(~)
 function test_bids_p300(~)
 p = fileparts(which('tutorial2_wrapperTest.m'));
 cd(fullfile(p, '..', 'ds003061'));
-simple_study_pipeline
+simple_study_pipeline;
