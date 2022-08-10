@@ -12,7 +12,7 @@
   "RecordingType": "continuous",
   "RecordingDuration": 758,
   "SamplingFrequency": 256,
-  "SubjectArtefactDescription": "She changed push button hands during the experiment (in the middle of trials)",
+  "SubjectArtefactDescription": "She changed push button hands during the experiment (in the middle of trials). Most of the file contains 0 and was truncated.",
   "EOGChannelCount": 0,
   "ECGChannelCount": 0,
   "EMGChannelCount": 0,
