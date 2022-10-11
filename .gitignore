@@ -5,6 +5,7 @@
 *.icaerp
 *.icaspec
 *.icatimef
+*.icatopo
 test-results
 *.spline
 ds002718/derivatives/
