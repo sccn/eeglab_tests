@@ -1,0 +1,5 @@
+1.1.0 2021-11-10
+  - Added task description and instructions
+  - Fixed coordinate system issue with validator
+  - Updated Event Tags
+  - Added HED tags and version

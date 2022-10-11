@@ -8,5 +8,22 @@
 *.icatopo
 test-results
 *.spline
+unittesting_studyfunc/teststudy/s02/syn02-s253-clean.icatopo
+unittesting_studyfunc/teststudy/s02/syn02-s254-clean.icatopo
+unittesting_studyfunc/teststudy/s05/syn05-s253-clean.icatopo
+unittesting_studyfunc/teststudy/s05/syn05-s254-clean.icatopo
+unittesting_studyfunc/teststudy/s07/syn07-s253-clean.icatopo
+unittesting_studyfunc/teststudy/s07/syn07-s254-clean.icatopo
+unittesting_studyfunc/teststudy/s08/syn08-s253-clean.icatopo
+unittesting_studyfunc/teststudy/s08/syn08-s254-clean.icatopo
+unittesting_studyfunc/teststudy/s10/syn10-s253-clean.icatopo
+unittesting_studyfunc/teststudy/s10/syn10-s254-clean.icatopo
+unittesting_tutorial/EEG Data ep_rtevents.set
+unittesting_tutorial/STUDY_headplot.spl
+unittesting_tutorial/erpmovie2d.mp4
+unittesting_tutorial/erpmovie3d1.mp4
+unittesting_tutorial/erpmovietopoplot.mp4
+unittesting_tutorial/tmp.spl
+unittesting_tutorial/tmp_file.loc
 ds002718/derivatives/
 ds002718/derivatives_integration/

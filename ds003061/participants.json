@@ -1,0 +1,30 @@
+{
+  "participant_id": {
+    "LongName": "Participant identifier",
+    "Description": "Unique participant identifier"
+  },
+  "gender": {
+    "Description": "Sex of the participant",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "age": {
+    "Description": "age of the participant",
+    "Units": "years"
+  },
+  "Air_conditioning": {
+    "Description": "Air Conditioning - could create interference so noted here",
+    "Levels": {
+      "on": "Air Conditioning was on  - temperature at or below 25C",
+      "off": "Air Conditioning was off - temperature at or above 25C"
+    }
+  },
+  "Ethnicity": {
+    "Levels": {
+      "Indian": "Participant of Indian origin",
+      "Non_indian": "Participant of non-Indian origin (Caucasian, etc...)"
+    }
+  }
+}

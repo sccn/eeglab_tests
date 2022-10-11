@@ -1,0 +1,49 @@
+{
+  "duration": {
+    "LongName": "Event duration",
+    "Description": "Duration of the event (measured from onset) in seconds",
+    "Units": "second"
+  },
+  "sample": {
+    "LongName": "Sample",
+    "Description": "Onset of the event according to the sampling scheme of the recorded modality (i.e., referring to the raw data file that the events.tsv file accompanies)."
+  },
+  "trial_type": {
+    "LongName": "Event categorization",
+    "Description": "Type of event",
+    "Levels": {
+      "stimulus": "Auditory stimulus",
+      "responses": "Behavioral response"
+    }
+  },
+  "response_time": {
+    "LongName": "Response time",
+    "Description": "Latency of button press after auditory stimulus",
+    "Units": "second",
+    "Levels": {
+      "Units": "millisecond"
+    }
+  },
+  "stim_file": {
+    "LongName": "Stimulus file location",
+    "Description": "Represents the location of the stimulus file (image, video, sound etc.) presented at the given onset time. They should be stored in the \/stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to \"\/stimuli\"."
+  },
+  "onset": {
+    "Description": "Event onset",
+    "Units": "second"
+  },
+  "value": {
+    "Description": "Value of event",
+    "Levels": {
+      "response": "Response of the subject",
+      "standard": "Standard at 500 hz for 60 ms",
+      "ignore": "Ignore - not a real event",
+      "oddball": "Oddball at 1000 hz for 60 ms",
+      "noise": "White noise for 60 ms",
+      "condition_5": "Ignore, computer glitch",
+      "noise_with_reponse": "White noise for 60 ms, followed by response (incorrect distractor)",
+      "oddball_with_reponse": "Oddball at 1000 hz for 60 ms, followed by response (correct target)",
+      "standard_with_reponse": "Standard at 500 hz for 60 ms, followed by response (incorrect)"
+    }
+  }
+}
