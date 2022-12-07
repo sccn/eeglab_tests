@@ -6,6 +6,15 @@
 % 04/01/2010 roy
 % Extent to 64 cases
 function test_pop_eegthresh
+
+rng(1);
+readepochsamplefile;
+LThresh = -1*rand(1,EEG.nbchan/2)*1000-50;
+HThresh = 1*rand(1,EEG.nbchan/2)*1000+50;
+Thresh = rand(1,EEG.nbchan/2)*1000+50;
+Elements = randperm(EEG.nbchan);
+Elements = Elements(1:EEG.nbchan/2);
+
 %% case 1
 readepochsamplefile;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, [1:EEG.nbchan], -100, 100, EEG.xmin, EEG.xmax, 0, 0);
@@ -14,16 +23,9 @@ readepochsamplefile;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, [], -100, 100, EEG.xmin, EEG.xmax, 0, 0);
 %% case 3
 readepochsamplefile; 
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-Thresh = rand(1,EEG.nbchan/2)*1000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, -1*Thresh, Thresh, EEG.xmin, EEG.xmax, 0, 0);
 %% case 4
 readepochsamplefile; 
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-LThresh = -1*rand(1,EEG.nbchan/2)*1000;
-HThresh = rand(1,EEG.nbchan/2)*1000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, LThresh, HThresh, EEG.xmin, EEG.xmax, 0, 0);
 %% case 5
 readepochsamplefile;
@@ -36,17 +38,10 @@ Shift = (EEG.xmax-EEG.xmin)/10;
 %% case 7
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-Thresh = rand(1,EEG.nbchan/2)*1000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, -1*Thresh, Thresh, EEG.xmin+Shift, EEG.xmax-Shift, 0, 0);
 %% case 8
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-LThresh = -1*rand(1,EEG.nbchan/2)*1000;
-HThresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, LThresh, HThresh, EEG.xmin+Shift, EEG.xmax-Shift, 0, 0);
 %% case 9
 readepochsamplefile;
@@ -56,16 +51,9 @@ readepochsamplefile;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, [], -100, 100, EEG.xmin, EEG.xmax, 0, 1);
 %% case 11
 readepochsamplefile; 
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-Thresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, -1*Thresh, Thresh, EEG.xmin, EEG.xmax, 0, 1);
 %% case 12
 readepochsamplefile; 
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-LThresh = -1*rand(1,EEG.nbchan/2)*1000;
-HThresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, LThresh, HThresh, EEG.xmin, EEG.xmax, 0, 1);
 %% case 13
 readepochsamplefile;
@@ -78,17 +66,10 @@ Shift = (EEG.xmax-EEG.xmin)/10;
 %% case 15
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-Thresh = rand(1,EEG.nbchan/2)*1000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, -1*Thresh, Thresh, EEG.xmin+Shift, EEG.xmax-Shift, 0, 1);
 %% case 16
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-LThresh = -1*rand(1,EEG.nbchan/2)*1000;
-HThresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, LThresh, HThresh, EEG.xmin+Shift, EEG.xmax-Shift, 0, 1);
 %% case 17
 readepochsamplefile;
@@ -98,16 +79,9 @@ readepochsamplefile;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, [], -100, 100, EEG.xmin, EEG.xmax, 1, 0);
 %% case 19
 readepochsamplefile; 
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-Thresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, -1*Thresh, Thresh, EEG.xmin, EEG.xmax, 1, 0);
 %% case 20
 readepochsamplefile; 
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-LThresh = -1*rand(1,EEG.nbchan/2)*1000;
-HThresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, LThresh, HThresh, EEG.xmin, EEG.xmax, 1, 0);
 %% case 21
 readepochsamplefile;
@@ -120,17 +94,10 @@ Shift = (EEG.xmax-EEG.xmin)/10;
 %% case 23
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-Thresh = rand(1,EEG.nbchan/2)*1000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, -1*Thresh, Thresh, EEG.xmin+Shift, EEG.xmax-Shift, 1, 0);
 %% case 24
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-LThresh = -1*rand(1,EEG.nbchan/2)*1000;
-HThresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, LThresh, HThresh, EEG.xmin+Shift, EEG.xmax-Shift, 1, 0);
 %% case 25
 readepochsamplefile;
@@ -140,16 +107,9 @@ readepochsamplefile;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, [], -100, 100, EEG.xmin, EEG.xmax, 1, 1);
 %% case 27
 readepochsamplefile; 
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-Thresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, -1*Thresh, Thresh, EEG.xmin, EEG.xmax, 1, 1);
 %% case 28
 readepochsamplefile; 
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-LThresh = -1*rand(1,EEG.nbchan/2)*1000;
-HThresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, LThresh, HThresh, EEG.xmin, EEG.xmax, 1, 1);
 %% case 29
 readepochsamplefile;
@@ -162,17 +122,10 @@ Shift = (EEG.xmax-EEG.xmin)/10;
 %% case 31
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-Thresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, -1*Thresh, Thresh, EEG.xmin+Shift, EEG.xmax-Shift, 1, 1);
 %% case 32
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
-Elements = randperm(EEG.nbchan);
-Elements = Elements(1:EEG.nbchan/2);
-LThresh = -1*rand(1,EEG.nbchan/2)*1000;
-HThresh = rand(1,EEG.nbchan/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 1, Elements, LThresh, HThresh, EEG.xmin+Shift, EEG.xmax-Shift, 1, 1);
 
 %% case 33
@@ -185,14 +138,11 @@ readepochsamplefile;
 readepochsamplefile; 
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-Thresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, -1*Thresh, Thresh, EEG.xmin, EEG.xmax, 0, 0);
 %% case 36
 readepochsamplefile; 
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-LThresh = -1*rand(1,size(EEG.icaweights,1)/2)*1000;
-HThresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, LThresh, HThresh, EEG.xmin, EEG.xmax, 0, 0);
 %% case 37
 readepochsamplefile;
@@ -207,15 +157,12 @@ readepochsamplefile;
 Shift = (EEG.xmax-EEG.xmin)/10;
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-Thresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, -1*Thresh, Thresh, EEG.xmin+Shift, EEG.xmax-Shift, 0, 0);
 %% case 40
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-LThresh = -1*rand(1,size(EEG.icaweights,1)/2)*1000;
-HThresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, LThresh, HThresh, EEG.xmin+Shift, EEG.xmax-Shift, 0, 0);
 %% case 41
 readepochsamplefile;
@@ -227,14 +174,11 @@ readepochsamplefile;
 readepochsamplefile; 
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-Thresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, -1*Thresh, Thresh, EEG.xmin, EEG.xmax, 0, 1);
 %% case 44
 readepochsamplefile; 
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-LThresh = -1*rand(1,size(EEG.icaweights,1)/2)*1000;
-HThresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, LThresh, HThresh, EEG.xmin, EEG.xmax, 0, 1);
 %% case 45
 readepochsamplefile;
@@ -249,15 +193,12 @@ readepochsamplefile;
 Shift = (EEG.xmax-EEG.xmin)/10;
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-Thresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, -1*Thresh, Thresh, EEG.xmin+Shift, EEG.xmax-Shift, 0, 1);
 %% case 48
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-LThresh = -1*rand(1,size(EEG.icaweights,1)/2)*1000;
-HThresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, LThresh, HThresh, EEG.xmin+Shift, EEG.xmax-Shift, 0, 1);
 %% case 49
 readepochsamplefile;
@@ -269,14 +210,11 @@ readepochsamplefile;
 readepochsamplefile; 
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-Thresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, -1*Thresh, Thresh, EEG.xmin, EEG.xmax, 1, 0);
 %% case 52
 readepochsamplefile; 
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-LThresh = -1*rand(1,size(EEG.icaweights,1)/2)*1000;
-HThresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, LThresh, HThresh, EEG.xmin, EEG.xmax, 1, 0);
 %% case 53
 readepochsamplefile;
@@ -291,15 +229,12 @@ readepochsamplefile;
 Shift = (EEG.xmax-EEG.xmin)/10;
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-Thresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, -1*Thresh, Thresh, EEG.xmin+Shift, EEG.xmax-Shift, 1, 0);
 %% case 56
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-LThresh = -1*rand(1,size(EEG.icaweights,1)/2)*1000;
-HThresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, LThresh, HThresh, EEG.xmin+Shift, EEG.xmax-Shift, 1, 0);
 %% case 57
 readepochsamplefile;
@@ -311,14 +246,11 @@ readepochsamplefile;
 readepochsamplefile; 
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-Thresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, -1*Thresh, Thresh, EEG.xmin, EEG.xmax, 1, 1);
 %% case 60
 readepochsamplefile; 
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-LThresh = -1*rand(1,size(EEG.icaweights,1)/2)*1000;
-HThresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, LThresh, HThresh, EEG.xmin, EEG.xmax, 1, 1);
 %% case 61
 readepochsamplefile;
@@ -333,15 +265,12 @@ readepochsamplefile;
 Shift = (EEG.xmax-EEG.xmin)/10;
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-Thresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, -1*Thresh, Thresh, EEG.xmin+Shift, EEG.xmax-Shift, 1, 1);
 %% case 64
 readepochsamplefile; 
 Shift = (EEG.xmax-EEG.xmin)/10;
 Elements = randperm(size(EEG.icaweights,1));
 Elements = Elements(1:size(EEG.icaweights,1)/2);
-LThresh = -1*rand(1,size(EEG.icaweights,1)/2)*1000;
-HThresh = rand(1,size(EEG.icaweights,1)/2)*2000;
 [EEG Indexes] = mypop_eegthresh(EEG, 0, Elements, LThresh, HThresh, EEG.xmin+Shift, EEG.xmax-Shift, 1, 1);
 
 function [EEG Indexes] = mypop_eegthresh(varargin)

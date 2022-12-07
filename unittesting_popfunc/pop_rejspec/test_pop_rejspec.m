@@ -13,11 +13,12 @@ end;
 
 if license('test', 'signal_toolbox') && ...
     license('checkout', 'signal_toolbox') && exist('psd') % requires the signal processing toolbox for PMTM function
+        [OUTEEG, Indexes] = mypop_rejspec(EEG, 1, [2 4 5], -10, 100, 2, 15, 0, 1);
+
         [OUTEEG, Indexes] = mypop_rejspec(EEG, 1, [1:32], -30, 30, 15, 30, 0, 0); 
         [OUTEEG, Indexes] = mypop_rejspec(EEG, 1, [1:32], -30, 30, 15, 30, 1, 1); 
         [OUTEEG, Indexes] = mypop_rejspec(EEG, 1, [1:32], -30, 30, 15, 30, 1, 0); 
 
-        [OUTEEG, Indexes] = mypop_rejspec(EEG, 1, [2 4 5], -1, 100, 2, 15, 0, 1);
 
         [OUTEEG, Indexes] = mypop_rejspec(EEG, 0, [1:length(EEG.icachansind)], -30, 30, 15, 30, 0, 1); 
         [OUTEEG, Indexes] = mypop_rejspec(EEG, 0, [1:length(EEG.icachansind)], -30, 30, 15, 30, 0, 0); 
