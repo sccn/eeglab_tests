@@ -75,7 +75,7 @@ TMP = eeg_eegrej( EEG, [ 9000 10000 ] );
 % Old behavior: mrk3 is retained (with incorrect latency) but should be removed!
 % mrk2 is removed but only "accidentially" as recomputed event latency is >
 % EEG.pnts. Discrepancy warning.
-if length(TMP.event) ~= 1 || ~isempty(strmatch('mrk2', { TMP.event.type })) || ~isempty(strmatch('mrk3', { TMP.event.type }))
+if length(TMP.event) ~= 2 || ~isempty(strmatch('mrk2', { TMP.event.type })) || ~isempty(strmatch('mrk3', { TMP.event.type }))
     error('Event removal error');
 end
 
