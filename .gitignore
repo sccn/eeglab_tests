@@ -6,6 +6,8 @@
 *.icaspec
 *.icatimef
 *.icatopo
+test.set
+test.fdt
 test-results
 *.spline
 unittesting_studyfunc/teststudy/s02/syn02-s253-clean.icatopo
