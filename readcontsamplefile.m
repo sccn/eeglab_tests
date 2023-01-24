@@ -1,3 +1,4 @@
+
 % if in global envoronment, start EEGLAB
 % --------------------------------------
 evalin('base', 'TESTISGLOBAL = 1;');
