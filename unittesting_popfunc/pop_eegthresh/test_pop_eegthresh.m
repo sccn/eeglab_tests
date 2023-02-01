@@ -7,6 +7,7 @@
 % Extent to 64 cases
 function test_pop_eegthresh
 
+rng('default');
 rng(1);
 readepochsamplefile;
 LThresh = -1*rand(1,EEG.nbchan/2)*1000-50;
