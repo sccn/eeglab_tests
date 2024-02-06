@@ -9,7 +9,7 @@ stats = { 'on' 'off' };
 stats2 = { 'main' 'marginal' };
 plotsubjects = { 'off' 'on' };
 tmpchanlocs = ALLEEG(1).chanlocs(3:9);
-channels = { { 'AF3' } { tmpchanlocs.labels } };
+channels = { { tmpchanlocs.labels } { 'AF3' } };
 
 for iDesign = 8:length(STUDY.design)
     STUDY = std_selectdesign(STUDY, ALLEEG, iDesign);

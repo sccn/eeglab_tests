@@ -25,5 +25,5 @@
 
 function pass_bugzilla_72()
 
-% 		eloc = readlocs('bugzilla_72.ced');
+		eloc = readlocs('bugzilla_72.ced');
 
