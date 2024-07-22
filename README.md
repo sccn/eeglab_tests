@@ -15,6 +15,16 @@ git submodule update --init --recursive --remote
 git pull --recurse-submodules
 ```
 
+## Running test locally
+
+Open the EEGLAB_test.prj project, then copy and paste the following code.
+
+```matlab
+proj = currentProject;
+suite = testsuite(proj.RootFolder,IncludingReferencedProjects=true);
+results = run(suite)
+```
+
 ## MATLAB Projects
 
 MATLAB Projects is a project management tool inside MATLAB for managing MATLAB or Simulink Projects. For more information: <https://www.mathworks.com/solutions/projects.html> and <https://www.mathworks.com/help/matlab/projects.html>
