@@ -30,7 +30,7 @@ jobs:
 
     strategy:
       matrix:
-        release: [R2021b]
+        release: [R2021b,R2025a]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
