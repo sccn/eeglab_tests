@@ -63,6 +63,15 @@ jobs:
           release: ${{ matrix.release }}
           products: Statistics_and_Machine_Learning_Toolbox Signal_Processing_Toolbox
           cache: true
+
+      - name: Setup virtual display for R2025a
+        if: matrix.release == 'R2025a'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+          sleep 3
           
       # Runs a set of commands using the runner's shell
       - name: Run all tests
