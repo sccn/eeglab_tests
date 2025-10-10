@@ -55,6 +55,13 @@ jobs:
       - name: Git LFS Pull
         if: steps.cache.outputs.cache-hit != 'true'
         run: git lfs pull
+
+      - name: Start virtual display server
+        if: matrix.release == 'R2025a'
+        run: |
+          sudo apt-get install -y xvfb
+          Xvfb :99 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
     
       # Sets up MATLAB on the GitHub Actions runner
       - name: Setup MATLAB
