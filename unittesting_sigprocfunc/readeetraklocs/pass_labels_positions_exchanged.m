@@ -25,6 +25,8 @@
 
 function pass_labels_positions_exchanged()
 
+% NOT SUPPORTED
+
 % file = 'test_labels_positions_exchanged.elc';
 % labels = {'Nr1' 'Nr2' 'Nr3' 'Ch4'};
 % coord = [[ 1   -2    3  ]; ...

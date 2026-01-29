@@ -25,26 +25,27 @@
 
 function pass_general()
 
-% file = 'test.elc';
-% labels = {'Nr1' 'Nr2' 'Nr3' 'Ch4'};
-% coord = [[ 1   -2    3  ]; ...
-%     [ 0.1  2.5 -4  ]; ...
-%     [ 3   -4   -8.5]; ...
-%     [-11   0   19]];
-% xyz = {'X' 'Y' 'Z'};
-% 
-% chanlocs = readeetraklocs(file);
-% if length(chanlocs) == length(labels)
-%     for i = 1:length(chanlocs)
-%         if ~isequal(chanlocs(i).labels,labels{i})
-%             error('EEGLAB:unittesting', 'Error in readeetraklocs(): incorrect channel labels.');
-%         end;
-%         for j = 1:3
-%             if ~near(chanlocs(i).(xyz{j}),coord(i,j))
-%                 error('EEGLAB:unittesting', 'Error in readeetraklocs(): incorrect channel locations');
-%             end;
-%         end;
-%     end;
-% else
-%     error('EEGLAB:unittesting', 'Error in readeetraklocs(): incorrect number of channels');
-% end;
+file = 'test.elc';
+% file = '64chanManu_56size_dummy_run1.elc'
+labels = {'Nr1' 'Nr2' 'Nr3' 'Ch4'};
+coord = [[ 1   -2    3  ]; ...
+    [ 0.1  2.5 -4  ]; ...
+    [ 3   -4   -8.5]; ...
+    [-11   0   19]];
+xyz = {'X' 'Y' 'Z'};
+
+chanlocs = readeetraklocs(file);
+if length(chanlocs) == length(labels)
+    for i = 1:length(chanlocs)
+        if ~isequal(chanlocs(i).labels,labels{i})
+            error('EEGLAB:unittesting', 'Error in readeetraklocs(): incorrect channel labels.');
+        end;
+        for j = 1:3
+            if ~near(chanlocs(i).(xyz{j}),coord(i,j))
+                error('EEGLAB:unittesting', 'Error in readeetraklocs(): incorrect channel locations');
+            end;
+        end;
+    end;
+else
+    error('EEGLAB:unittesting', 'Error in readeetraklocs(): incorrect number of channels');
+end;
