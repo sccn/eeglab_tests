@@ -1,3 +1,4 @@
+function limo_preproc_stats_hw(studypath, outputdir)
 % BIDS Tools / EEGLAB / LIMO EEG 
 % data analysis of Wakeman and Henson 2015 data
 % tests the full preprocessing pipeline            - bids_import
@@ -19,13 +20,21 @@
 
 %% Import
 % start EEGLAB
-clear
+if nargin < 1
+    studypath = fullfile(fileparts(fileparts(mfilename('fullpath'))), 'ds002718');
+end
+if nargin < 2, outputdir = ''; end
+[studypath, outputdir, cleanup] = limo_test_output(studypath, outputdir); %#ok<ASGLU>
+preferences = eeglab_test_preferences; %#ok<NASGU>
+oldRandom = rng;
+randomCleanup = onCleanup(@() rng(oldRandom)); %#ok<NASGU>
+rng(0);
 [ALLEEG, EEG, CURRENTSET, ALLCOM] = eeglab;
 pop_editoptions( 'option_storedisk', 1);
  
 % call BIDS tool BIDS
-filepath        = fileparts(which('participants.tsv'));
-[STUDY, ALLEEG] = pop_importbids(filepath, 'bidsevent','on','bidschanloc','on', 'studyName','Face_detection','outputdir', fullfile(filepath, 'derivatives2'), 'eventtype', 'trial_type');
+filepath = studypath;
+[STUDY, ALLEEG] = pop_importbids(filepath, 'bidsevent','on','bidschanloc','on', 'studyName','Face_detection','outputdir', outputdir, 'eventtype', 'trial_type');
 ALLEEG = pop_select( ALLEEG, 'nochannel',{'EEG061','EEG062','EEG063','EEG064'});
 CURRENTSTUDY = 1; EEG = ALLEEG; CURRENTSET = [1:length(EEG)];
 
@@ -76,14 +85,15 @@ STUDY = std_makedesign(STUDY, ALLEEG, 1, 'name','FaceRepetition','delfiles','off
     'vartype1','categorical','subjselect',{'sub-002','sub-003','sub-004','sub-005','sub-006','sub-007','sub-008',...
     'sub-009','sub-010','sub-011','sub-012','sub-013','sub-014','sub-015','sub-016','sub-017','sub-018','sub-019'});
 [STUDY, EEG] = pop_savestudy( STUDY, EEG, 'savemode','resave');
-STUDY  = pop_limo(STUDY, ALLEEG, 'method',mode,'measure','daterp','timelim',[-50 650],'erase','on','splitreg','off','interaction','off');
+[STUDY, ~, Model_files] = pop_limo(STUDY, ALLEEG, 'method',mode,'measure','daterp','timelim',[-50 650],'erase','on','splitreg','off','interaction','off','verbose','noGUI');
+lists = limo_test_lists(Model_files, STUDY, fullfile(outputdir, 'input_lists'));
 
 % 2nd level analysis
 mkdir([STUDY.filepath filesep '2-ways-ANOVA'])
 cd([STUDY.filepath filesep '2-ways-ANOVA'])
-chanlocs = [STUDY.filepath filesep 'limo_gp_level_chanlocs.mat'];
+chanlocs = STUDY.limo.chanloc;
 limo_random_select('Repeated Measures ANOVA',chanlocs,'LIMOfiles',...
-    {[STUDY.filepath filesep 'LIMO_Face_detection' filesep  'Beta_files_FaceRepetition_GLM_Channels_Time_' mode '.txt']},...
+    {lists.beta},...
     'analysis_type','Full scalp analysis','parameters',{[1 2 3],[4 5 6],[7 8 9]},...
     'factor names',{'face','repetition'},'type','Channels','nboot',1000,'tfce',0,'skip design check','yes');
 
@@ -91,8 +101,7 @@ limo_random_select('Repeated Measures ANOVA',chanlocs,'LIMOfiles',...
 
 mkdir('ERPs'); cd('ERPs');
 % compute unweigted ERPs
-Files = [STUDY.filepath filesep 'LIMO_' STUDY.filename(1:end-6) filesep ...
-    'LIMO_files_FaceRepetition_GLM_Channels_Time_' mode '.txt'];
+Files = lists.mat;
 parameters = [1 2 3];
 savename1  = [pwd filesep 'famous_faces'];
 limo_central_tendency_and_ci(Files, parameters, chanlocs, 'Mean', 'Mean', [],savename1)
@@ -102,7 +111,7 @@ limo_central_tendency_and_ci(Files, parameters, chanlocs, 'Mean', 'Mean', [],sav
 parameters = [7 8 9];
 savename3  = [pwd filesep 'unfamiliar_faces'];
 limo_central_tendency_and_ci(Files, parameters, chanlocs, 'Mean', 'Mean', [],savename3)
-limo_add_plots({[savename1 '_Mean_of_mean.mat'],[savename2 '_Mean_of_mean.mat'],[savename3 '_Mean_of_mean.mat']},...
+limo_add_plots({[savename1 '_Mean_of_Mean.mat'],[savename2 '_Mean_of_Mean.mat'],[savename3 '_Mean_of_Mean.mat']},...
     [STUDY.filepath filesep '2-ways-ANOVA' filesep 'LIMO.mat'],'channel',50); title('Mean Face types at channel 50')
 
 % compute weighted ERPs
@@ -121,15 +130,15 @@ limo_add_plots({[savename1 '_Mean_of_Weighted mean.mat'],[savename2 '_Mean_of_We
 % plot these results again and also subject wise
 figure
 subplot(1,3,1); 
-limo_add_plots({[savename1 '_Mean_of_mean.mat'],[savename1 '_Mean_of_Weighted mean.mat']},...
+limo_add_plots({[savename1 '_Mean_of_Mean.mat'],[savename1 '_Mean_of_Weighted mean.mat']},...
     [STUDY.filepath filesep '2-ways-ANOVA' filesep 'LIMO.mat'],'channel',50,'figure','hold'); 
 title('mean and weighed mean Famous Faces','Fontsize',12)
 subplot(1,3,2); 
-limo_add_plots({[savename2 '_Mean_of_mean.mat'],[savename2 '_Mean_of_Weighted mean.mat']},...
+limo_add_plots({[savename2 '_Mean_of_Mean.mat'],[savename2 '_Mean_of_Weighted mean.mat']},...
     [STUDY.filepath filesep '2-ways-ANOVA' filesep 'LIMO.mat'],'channel',50,'figure','hold'); 
 title('mean and weighed mean srambled Faces','Fontsize',12)
 subplot(1,3,3); 
-limo_add_plots({[savename3 '_Mean_of_mean.mat'],[savename3 '_Mean_of_Weighted mean.mat']},...
+limo_add_plots({[savename3 '_Mean_of_Mean.mat'],[savename3 '_Mean_of_Weighted mean.mat']},...
     [STUDY.filepath filesep '2-ways-ANOVA' filesep 'LIMO.mat'],'channel',50,'figure','hold'); 
 title('mean and weighed mean unfamiliar Faces','Fontsize',12)
 
@@ -145,27 +154,30 @@ end
 
 % compute mean Betas via contrast
 cd ..
-[~,~,Files] = limo_get_files([],[],[],[STUDY.filepath filesep 'LIMO_' STUDY.filename(1:end-6) filesep ...
-    'LIMO_files_FaceRepetition_GLM_Channels_Time_' mode '.txt']);
+[~,~,Files] = limo_get_files([],[],[],lists.mat);
 contrast.LIMO_files = Files;
 contrast.mat = [1 1 1 0 0 0 0 0 0 0; 0 0 0 1 1 1 0 0 0 0;0 0 0 0 0 0 1 1 1 0]; % average repetition levels
-limo_batch('contrast only',[],contrast);
+contrastFiles = limo_batch('contrast only',[],contrast,STUDY);
+Model_files.con = contrastFiles.con;
+lists = limo_test_lists(Model_files, STUDY, fullfile(outputdir, 'contrast_lists'));
+% limo_batch changes directory to its batch output folder.
+cd(fullfile(STUDY.filepath, '2-ways-ANOVA'));
 
 mkdir('famous_faces'); cd('famous_faces')
 limo_random_select('one sample t-test',chanlocs,'LIMOfiles',...
-    {[STUDY.filepath filesep 'LIMO_' STUDY.filename(1:end-6) filesep 'con_1_files_FaceRepetition_GLM_Channels_Time_' mode '.txt']},...
+    {lists.con{1}},...
     'analysis_type','Full scalp analysis','type','Channels','nboot',0,'tfce',0); 
 savename1 =  [pwd filesep 'famous_faces']; limo_central_tendency_and_ci([pwd filesep 'Yr.mat'], 'Mean', 50,savename1); cd ..
 
 mkdir('scrambled_faces'); cd('scrambled_faces')
 limo_random_select('one sample t-test',chanlocs,'LIMOfiles',...
-    {[STUDY.filepath filesep 'LIMO_' STUDY.filename(1:end-6) filesep 'con_2_files_FaceRepetition_GLM_Channels_Time_' mode '.txt']},...
+    {lists.con{2}},...
     'analysis_type','Full scalp analysis','type','Channels','nboot',0,'tfce',0); 
 savename2 =  [pwd filesep 'scrambled_faces']; limo_central_tendency_and_ci([pwd filesep 'Yr.mat'], 'Mean', 50,savename2); cd ..
 
 mkdir('unfamiliar_faces'); cd('unfamiliar_faces')
 limo_random_select('one sample t-test',chanlocs,'LIMOfiles',...
-    {[STUDY.filepath filesep 'LIMO_' STUDY.filename(1:end-6) filesep 'con_3_files_FaceRepetition_GLM_Channels_Time_' mode '.txt']},...
+    {lists.con{3}},...
     'analysis_type','Full scalp analysis','type','Channels','nboot',0,'tfce',0); 
 savename3 =  [pwd filesep 'unfamiliar_faces']; limo_central_tendency_and_ci([pwd filesep 'Yr.mat'], 'Mean', 50,savename3); cd ..
 
@@ -187,3 +199,5 @@ limo_add_plots({fullfile(pwd,'diff_to_famous'),fullfile(pwd,'diff_to_unfamiliar'
 % print main results
 limo_eeg(5,fullfile(pwd,'LIMO.mat'))
 
+
+end
