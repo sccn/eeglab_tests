@@ -9,7 +9,9 @@ end
 
 function testRejectsExistingOutput(testCase)
 folder = testCase.applyFixture(matlab.unittest.fixtures.TemporaryFolderFixture).Folder;
-writelines('participant_id', fullfile(folder, 'participants.tsv'));
+handle = fopen(fullfile(folder, 'participants.tsv'), 'w');
+fprintf(handle, 'participant_id\n');
+fclose(handle);
 verifyError(testCase, @() limo_test_output(folder, folder), '');
 verifyTrue(testCase, isfile(fullfile(folder, 'participants.tsv')));
 end

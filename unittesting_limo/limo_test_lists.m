@@ -25,5 +25,8 @@ end
 
 function file = writeList(file, paths)
 assert(all(cellfun(@isfile, paths)), 'A returned LIMO output file does not exist.');
-writelines(string(paths(:)), file);
+handle = fopen(file, 'w');
+assert(handle ~= -1, 'Cannot write LIMO input list %s.', file);
+cleanup = onCleanup(@() fclose(handle)); %#ok<NASGU>
+fprintf(handle, '%s\n', paths{:});
 end

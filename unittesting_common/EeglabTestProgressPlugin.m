@@ -12,8 +12,12 @@ classdef EeglabTestProgressPlugin < matlab.unittest.plugins.TestRunnerPlugin
     end
     methods (Access = protected)
         function runTest(plugin, data)
-            writelines([string(data.Name); string(datetime('now'))], ...
-                fullfile(plugin.OutputDirectory, 'current.txt'));
+            file = fullfile(plugin.OutputDirectory, 'current.txt');
+            handle = fopen(file, 'w');
+            assert(handle ~= -1, 'Cannot write test progress to %s.', file);
+            cleanup = onCleanup(@() fclose(handle));
+            fprintf(handle, '%s\n%s\n', char(data.Name), char(datetime('now')));
+            clear cleanup
             runTest@matlab.unittest.plugins.TestRunnerPlugin(plugin, data);
         end
         function reportFinalizedResult(plugin, data)
