@@ -111,7 +111,7 @@ limo_central_tendency_and_ci(Files, parameters, chanlocs, 'Mean', 'Mean', [],sav
 parameters = [7 8 9];
 savename3  = [pwd filesep 'unfamiliar_faces'];
 limo_central_tendency_and_ci(Files, parameters, chanlocs, 'Mean', 'Mean', [],savename3)
-limo_add_plots({[savename1 '_Mean_of_mean.mat'],[savename2 '_Mean_of_mean.mat'],[savename3 '_Mean_of_mean.mat']},...
+limo_add_plots({[savename1 '_Mean_of_Mean.mat'],[savename2 '_Mean_of_Mean.mat'],[savename3 '_Mean_of_Mean.mat']},...
     [STUDY.filepath filesep '2-ways-ANOVA' filesep 'LIMO.mat'],'channel',50); title('Mean Face types at channel 50')
 
 % compute weighted ERPs
@@ -130,15 +130,15 @@ limo_add_plots({[savename1 '_Mean_of_Weighted mean.mat'],[savename2 '_Mean_of_We
 % plot these results again and also subject wise
 figure
 subplot(1,3,1); 
-limo_add_plots({[savename1 '_Mean_of_mean.mat'],[savename1 '_Mean_of_Weighted mean.mat']},...
+limo_add_plots({[savename1 '_Mean_of_Mean.mat'],[savename1 '_Mean_of_Weighted mean.mat']},...
     [STUDY.filepath filesep '2-ways-ANOVA' filesep 'LIMO.mat'],'channel',50,'figure','hold'); 
 title('mean and weighed mean Famous Faces','Fontsize',12)
 subplot(1,3,2); 
-limo_add_plots({[savename2 '_Mean_of_mean.mat'],[savename2 '_Mean_of_Weighted mean.mat']},...
+limo_add_plots({[savename2 '_Mean_of_Mean.mat'],[savename2 '_Mean_of_Weighted mean.mat']},...
     [STUDY.filepath filesep '2-ways-ANOVA' filesep 'LIMO.mat'],'channel',50,'figure','hold'); 
 title('mean and weighed mean srambled Faces','Fontsize',12)
 subplot(1,3,3); 
-limo_add_plots({[savename3 '_Mean_of_mean.mat'],[savename3 '_Mean_of_Weighted mean.mat']},...
+limo_add_plots({[savename3 '_Mean_of_Mean.mat'],[savename3 '_Mean_of_Weighted mean.mat']},...
     [STUDY.filepath filesep '2-ways-ANOVA' filesep 'LIMO.mat'],'channel',50,'figure','hold'); 
 title('mean and weighed mean unfamiliar Faces','Fontsize',12)
 
