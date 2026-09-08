@@ -160,6 +160,8 @@ contrast.mat = [1 1 1 0 0 0 0 0 0 0; 0 0 0 1 1 1 0 0 0 0;0 0 0 0 0 0 1 1 1 0]; %
 contrastFiles = limo_batch('contrast only',[],contrast,STUDY);
 Model_files.con = contrastFiles.con;
 lists = limo_test_lists(Model_files, STUDY, fullfile(outputdir, 'contrast_lists'));
+% limo_batch changes directory to its batch output folder.
+cd(fullfile(STUDY.filepath, '2-ways-ANOVA'));
 
 mkdir('famous_faces'); cd('famous_faces')
 limo_random_select('one sample t-test',chanlocs,'LIMOfiles',...
