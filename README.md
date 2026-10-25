@@ -15,7 +15,32 @@ git submodule update --init --recursive --remote
 git pull --recurse-submodules
 ```
 
-## Running test locally
+## Running tests locally with installed plugins
+
+From this repository root, use the local runner without opening the MATLAB project:
+
+```matlab
+results = run_eeglab_tests;
+assertSuccess(results);
+```
+
+The runner discovers the root sample data wrapper, all `unittesting_*` test folders except helpers, and `regression_tests`. It does not execute project startup installers, nested runners, or the legacy email reporting harness. Install the required plugins and local test datasets before running it. EEGLAB startup may query the plugin server, but the runner does not upgrade plugins.
+
+Use a fresh MATLAB process and a disposable checkout or copy. Legacy tests write derived data in the checkout. The runner restores the working directory, MATLAB path, default figure visibility, and EEGLAB preference file. The menu and LIMO wrappers additionally restore their base workspace and random state. Do not run multiple suites concurrently against the same data or preference file.
+
+Each run saves `manifest.csv`, source path information in `suite.mat`, MATLAB results, a CSV summary, JUnit XML, and individual completed results. `current.txt` identifies the active test if execution stalls. Results are retained under a new `test-results` directory by default. An empty selection is an error, not a passing run.
+
+```matlab
+run_eeglab_tests('DiscoverOnly', true);
+results = run_eeglab_tests('IncludeLimo', false);
+results = run_eeglab_tests('Name', '*pop_selectevent*');
+```
+
+LIMO is included by default. Its two integration cases require the local `ds002718` dataset and can take substantially longer than the other tests. They create new temporary output directories and print their locations. Existing results are never deleted. To choose explicit output directories, call `limo_preproc_stats_hw(datasetPath, newOutputPath)` or `limo_test_integration(datasetPath, newOutputPath)` with the helper folders on the MATLAB path. The integration case saves `first_level_results.mat`. Use `limo_test_second_level(preparationFile)` to rerun the second level cases into another new directory. That directory retains `integration_results.mat`, including the nine internal group outcomes and full exception objects. A prerequisite failure is identified separately from an analysis failure.
+
+A passing legacy wrapper does not necessarily contain a numerical assertion. The manifest records executed cases, not a guarantee of complete scientific coverage.
+
+## Running registered project tests
 
 Open the EEGLAB_test.prj project, then copy and paste the following code.
 

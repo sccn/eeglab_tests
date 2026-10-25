@@ -1,6 +1,13 @@
 function tests = tutorial_wrapperTest
 tests = functiontests(localfunctions);
 
+function setupOnce(testCase)
+folder = fullfile(fileparts(which('eeglab')), 'tutorial_scripts');
+testCase.applyFixture(matlab.unittest.fixtures.PathFixture(folder));
+
+function setup(testCase)
+testCase.addTeardown(@cd, pwd);
+
 function test_eeglab_history(~)
 eeglab_history
 

@@ -1,8 +1,7 @@
 function test_std_editset
 
 eeglab;
-prj = matlab.project.currentProject();
-tstp = char(prj.RootFolder);
+tstp = fileparts(fileparts(fileparts(mfilename('fullpath'))));
 [STUDY, ALLEEG] = std_editset( [], [], 'commands', ...
     {{'index' 1 'load' fullfile(tstp, 'unittesting_studyfunc', 'teststudy2','S02', 'Ignore.set') } ...
      {'index' 2 'load' fullfile(tstp, 'unittesting_studyfunc', 'teststudy2','S02', 'Probe.set' ) } ...
